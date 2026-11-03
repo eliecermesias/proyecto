@@ -1,0 +1,48 @@
+<!-- {% extends 'layouts/app.html' %}
+
+{% block title %}
+    Personas
+{% endblock %}
+
+{% block content %} -->
+
+<h2>Listado de Personas</h2>
+
+<hr>
+
+<table border="1" cellpadding="10" cellspacing="0">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Phone</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for person in persons %}
+        <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.Name }}</td>
+            <td>{{ person.Phone }}</td>
+            <td>{{ person.email }}</td>
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="4">
+                No hay personas registradas
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

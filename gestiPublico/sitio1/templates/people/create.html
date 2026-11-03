@@ -1,0 +1,30 @@
+<h2>Registrar Persona</h2>
+
+<hr>
+
+<form action="/people/store/" method="post">
+    {% csrf_token %}
+
+    <div>
+        <label for="Name">Nombre:</label>
+        <input type="text" id="Name" name="Name" placeholder="Ingrese el nombre" required>
+    </div>
+
+    <div>
+        <label for="LastName">Apellido:</label>
+        <input type="text" id="LastName" name="LastName" placeholder="Ingrese el apellido" required>
+    </div>
+
+    <div>
+        <label for="Phone">Teléfono:</label>
+        <input type="tel" id="Phone" name="Phone" placeholder="Ingrese el teléfono" required>
+    </div>
+
+    <div>
+        <label for="email">Correo:</label>
+        <input type="email" id="email" name="email" placeholder="Ingrese el correo" required>
+    </div>
+
+    <button type="submit">Guardar</button>
+    <a href="/people/">Cancelar</a>
+</form>
