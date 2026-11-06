@@ -16,14 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import path, include
+from django.urls import path, include
+from sitio1.views import CustomLoginView
+
 
 from sitio1.views import  formulario_view, objeto_view, primeravistaweb, recibir_formulario
 from sitio1.views import cargamosMensaje
 # from sitio1.controllers.people_controller import index as people_index
-from sitio1.controllers.people_controller import *
-from sitio1.controllers.providers_controller import *
+from sitio1.controllers import people_controller, providers_controller, propeties_controller
 
 urlpatterns = [
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),    
+    path('accounts/', include('django_auth_app.urls', namespace='django_auth_app')),
+
     path('admin/', admin.site.urls),
     path('', primeravistaweb),
     path('cm/', cargamosMensaje),
@@ -33,21 +39,24 @@ urlpatterns = [
     # path('people/', 
     #      people_index, name='people.index')
 
-    path('people/', index),
-    path('people/create/', create),
-    path('people/store/', store),
-    path('people/<int:id>/', show),
-    path('people/<int:id>/edit/', edit),
-    path('people/<int:id>/update/', update),
-    path('people/<int:id>/destroy/', destroy),
+    path('people/', people_controller.index),
+    path('people/create/', people_controller.create),
+    path('people/store/', people_controller.store),
+    path('people/<int:id>/', people_controller.show),
+    path('people/<int:id>/edit/', people_controller.edit),
+    path('people/<int:id>/update/', people_controller.update),
+    path('people/<int:id>/destroy/', people_controller.destroy),
     
-    path('providers/', index),
-    path('providers/create/', create),
-    path('providers/store/', store),
-    path('providers/<int:id>/', show),
-    path('providers/<int:id>/edit/', edit),
-    path('providers/<int:id>/update/', update),
-    path('providers/<int:id>/destroy/', destroy),
+    path('providers/', providers_controller.index),
+    path('providers/create/', providers_controller.create),
+    path('providers/store/', providers_controller.store),
+    path('providers/<int:id>/', providers_controller.show),
+    path('providers/<int:id>/edit/', providers_controller.edit),
+    path('providers/<int:id>/update/', providers_controller.update),
+    path('providers/<int:id>/destroy/', providers_controller.destroy),
+
+    path('properties/', propeties_controller.index),
+    path('properties/create/', propeties_controller.create, name='properties_create'),
 
 
 ]

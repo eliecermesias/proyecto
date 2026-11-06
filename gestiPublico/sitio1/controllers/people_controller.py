@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from sitio1.models.people import people
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     persons = people.objects.all()
-    # print(f"Persons: {persons}")
     return render(request, 'people/index.html', {'persons': persons})
 
 def create(request):

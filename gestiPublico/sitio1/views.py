@@ -2,6 +2,8 @@ from pathlib import Path
 from django.shortcuts import render
 
 from django.http import HttpResponse
+from django.contrib.auth.views import LoginView
+
 # Create your views here.
 
 
@@ -36,3 +38,14 @@ def objeto_view(request):
     }    
     # Pasar el objeto al contexto de la plantilla
     return render(request, "objeto.html", {'objeto': objeto})
+
+class CustomLoginView(LoginView):
+    template_name = 'django_auth_app/login.html'
+
+    def get_success_url(self):
+        # Busca 'next' en los datos POST (enviados por el formulario) o en la URL GET
+        next_url = self.request.POST.get('next') or self.request.GET.get('next')
+        if next_url:
+            return next_url
+        # Si no hay 'next', usa la redirección por defecto (puedes apuntar a donde quieras)
+        return super().get_success_url()

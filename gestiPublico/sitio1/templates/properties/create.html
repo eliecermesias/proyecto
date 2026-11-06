@@ -1,0 +1,35 @@
+<h2>Registrar propiedad</h2>
+
+<hr>
+
+<form action="{% url 'properties_create' %}" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+        <label for="{{ form.code.id_for_label }}">Código:</label>
+        {{ form.code }}
+        {{ form.code.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.Address.id_for_label }}">Dirección:</label>
+        {{ form.Address }}
+        {{ form.Address.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.Context.id_for_label }}">Contexto:</label>
+        {{ form.Context }}
+        {{ form.Context.errors }}
+    </div>
+
+    <div>
+        <label for="{{ form.people_Id.id_for_label }}">Persona asociada (opcional):</label>
+        {{ form.people_Id }}
+        {{ form.people_Id.errors }}
+    </div>
+
+    <button type="submit">Guardar</button>
+    <a href="/properties/">Cancelar</a>
+</form>
